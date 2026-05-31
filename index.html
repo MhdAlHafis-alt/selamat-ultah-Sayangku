@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Spesial Buat Kamu!</title>
+    <style>
+        body { margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #ff758c; color: white; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .container { z-index: 1; text-align: center; }
+        
+        /* Animasi Balon */
+        .balloon { width: 50px; height: 60px; background: #ffeb3b; border-radius: 50%; position: absolute; bottom: -100px; animation: fly 5s infinite; }
+        @keyframes fly { 0% { transform: translateY(0); } 100% { transform: translateY(-110vh); } }
+        
+        button { padding: 15px 30px; font-size: 18px; border: none; border-radius: 25px; cursor: pointer; background: white; color: #ff758c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Selamat Ulang Tahun! 🎈</h1>
+        <p>Semoga sehat dan sukses selalu ya!</p>
+        <button onclick="playMusic()">Klik untuk Musik 🎵</button>
+    </div>
+
+    <!-- Script untuk Musik dan Balon -->
+    <script>
+        function playMusic() {
+    // Karena file mp3 berada di folder yang sama, cukup tulis nama filenya saja
+    let audio = new Audio('lagu.mp3'); 
+    audio.play();
+}
+
+        // Fungsi menambah balon otomatis
+        for(let i=0; i<10; i++) {
+            let b = document.createElement('div');
+            b.className = 'balloon';
+            b.style.left = Math.random() * 100 + '%';
+            b.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(b);
+        }
+    </script>
+</body>
+</html>
