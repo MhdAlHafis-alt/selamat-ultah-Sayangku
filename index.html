@@ -2,41 +2,129 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Spesial Buat Kamu!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Sayang! ❤️</title>
     <style>
-        body { margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #ff758c; color: white; font-family: 'Arial', sans-serif; overflow: hidden; }
-        .container { z-index: 1; text-align: center; }
-        
-        /* Animasi Balon */
-        .balloon { width: 50px; height: 60px; background: #ffeb3b; border-radius: 50%; position: absolute; bottom: -100px; animation: fly 5s infinite; }
-        @keyframes fly { 0% { transform: translateY(0); } 100% { transform: translateY(-110vh); } }
-        
-        button { padding: 15px 30px; font-size: 18px; border: none; border-radius: 25px; cursor: pointer; background: white; color: #ff758c; font-weight: bold; }
-    </style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500&display=swap');
+
+    body { 
+        margin: 0; display: flex; justify-content: center; align-items: center; 
+        min-height: 100vh; 
+        /* Gradasi warna Sunset Romantis */
+        background: linear-gradient(160deg, #2d1b4e 0%, #4a148c 50%, #d81b60 100%); 
+        font-family: 'Poppins', sans-serif; padding: 20px;
+    }
+
+    /* Efek Bintang yang lebih lembut */
+    body::before {
+        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 30px);
+        background-size: 400px 400px;
+        animation: stars 30s linear infinite; opacity: 0.4;
+    }
+
+    .glass-card { 
+        background: rgba(255, 255, 255, 0.05); 
+        backdrop-filter: blur(25px); 
+        padding: 40px; border-radius: 50px; 
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.4); 
+        text-align: center; width: 100%; max-width: 400px; color: #fff;
+    }
+
+    .photo { 
+        width: 150px; height: 150px; border-radius: 50%; object-fit: cover; 
+        border: 6px solid rgba(255,255,255,0.1); 
+        box-shadow: 0 0 20px rgba(216, 27, 96, 0.5); /* Glowing pink */
+        margin-bottom: 20px;
+    }
+
+    h1 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 10px; color: #ffeb3b; }
+
+    .modern-btn { 
+        width: 100%; padding: 15px; border-radius: 30px; border: none; 
+        color: white; font-weight: 500; cursor: pointer; margin-bottom: 15px; 
+        transition: all 0.4s ease; 
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .modern-btn:hover { 
+        background: rgba(216, 27, 96, 0.4); /* Pink Glow saat disentuh */
+        transform: scale(1.05); border-color: #d81b60;
+    }
+
+    .gallery-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+    .gallery-item { 
+        width: 100%; height: 150px; object-fit: cover; border-radius: 25px; 
+        transition: transform 0.5s ease; border: 2px solid rgba(255,255,255,0.1);
+    }
+    .gallery-item:hover { transform: scale(1.1) rotate(-2deg); border-color: #d81b60; }
+
+    .page { display: none; opacity: 0; transition: opacity 0.6s ease; }
+    .active { display: block; opacity: 1; }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Selamat Ulang Tahun! 🎈</h1>
-        <p>Semoga sehat dan sukses selalu ya!</p>
-        <button onclick="playMusic()">Klik untuk Musik 🎵</button>
+    <div id="start" class="glass-card page active">
+        <h1>Halo Sayang! ✨</h1>
+        <p>Ada sesuatu yang spesial buat kamu...</p>
+        <button onclick="startExperience()" class="modern-btn" style="background: #ff4757;">Klik untuk Membuka 💖</button>
     </div>
 
-    <!-- Script untuk Musik dan Balon -->
-    <script>
-        function playMusic() {
-    // Karena file mp3 berada di folder yang sama, cukup tulis nama filenya saja
-    let audio = new Audio('lagu.mp3'); 
-    audio.play();
-}
+    <div id="home" class="glass-card page">
+        <img src="sa.jpeg" class="photo">
+        <h1>Happy Birthday, Sayang!</h1>
+        <p>Terima kasih sudah hadir di hidup awak ❤️</p>
+        <button onclick="showPage('wishes')" class="modern-btn">Pesan untukmu 💌</button>
+        <button onclick="showPage('gallery')" class="modern-btn">Lihat Kenangan 💖</button>
+        <button onclick="showPage('surprise')" class="modern-btn">Kejutan Lucu ✨</button>
+    </div>
 
-        // Fungsi menambah balon otomatis
-        for(let i=0; i<10; i++) {
-            let b = document.createElement('div');
-            b.className = 'balloon';
-            b.style.left = Math.random() * 100 + '%';
-            b.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(b);
+    <div id="gallery" class="glass-card page">
+        <h2>Album Kita 📸</h2>
+        <div class="gallery-container">
+            <img src="1.jpeg" class="gallery-item"><img src="2.jpeg" class="gallery-item">
+            <img src="3.jpeg" class="gallery-item"><img src="4.jpeg" class="gallery-item">
+            <img src="5.jpeg" class="gallery-item"><img src="6.jpeg" class="gallery-item">
+            <img src="7.jpeg" class="gallery-item"><img src="8.jpeg" class="gallery-item">
+            <img src="9.jpeg" class="gallery-item"><img src="q.jpeg" class="gallery-item">
+            <img src="w.jpeg" class="gallery-item"><img src="e.jpeg" class="gallery-item">
+            <img src="rr.jpeg" class="gallery-item"><img src="t.jpeg" class="gallery-item">
+            <img src="y.jpeg" class="gallery-item"><img src="u.jpeg" class="gallery-item">
+            <img src="i.jpeg" class="gallery-item"><img src="o.jpeg" class="gallery-item">
+        </div>
+        <br><button onclick="showPage('home')" class="modern-btn">Kembali</button>
+    </div>
+
+    <div id="surprise" class="glass-card page">
+        <h1>WKWKWKWKWKKW</h1>
+        <img src="dar.JPEG" width="150" style="border-radius:20px">
+        <p>I Love You Tayaaaank 💖</p>
+        <button onclick="showPage('home')" class="modern-btn">Kembali</button>
+    </div>
+
+    <div id="wishes" class="glass-card page">
+        <h2>Pesan Spesial 💖</h2>
+        <div style="text-align: justify; max-height: 250px; overflow-y: auto;">
+            <p>Terimakasih ya sayang sudah hadir di hidup awak dan menerima segala kekurangan awak walaupun awak sering buat kamu kesel atau pun sedih tapi kamu selalu sabar dengan tingkah laku awak wkwwkkww, di hari spesial ini awak ucapkan Selamat Ulang Tahun Ya sayangkuu semoga panjang umur dan murah rezeki nya dan semoga tercapai cita cita nya sayang kuuu, mwahh I love you Sayaaang🥰</p>
+        </div>
+        <button onclick="showPage('home')" class="modern-btn" style="margin-top: 20px;">Kembali</button>
+    </div>
+
+    <script>
+        const audio = new Audio('lagu.mp3');
+
+        function startExperience() {
+            audio.play();
+            audio.loop = true;
+            showPage('home');
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
         }
     </script>
 </body>
